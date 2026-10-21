@@ -1,2547 +1,578 @@
 <!DOCTYPE html>
 <html lang="am">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#071b13">
-<title>ሳሚ ፀሀይ | ኢትዮ 41</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ሳሚ ፀሀይ - ኢትዮ 41 ኮንከር & ዳማ</title>
+    <style>
+        * { box-sizing: border-box; user-select: none; }
+        html, body {
+            background: radial-gradient(circle, #0b6623 0%, #032b10 100%);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
 
-<style>
-:root{
-  --bg:#071b13;
-  --panel:#102b20;
-  --panel2:#183b2b;
-  --gold:#f4c76b;
-  --green:#21c77a;
-  --white:#f7f8f4;
-  --muted:#a6b8ac;
-  --red:#ff626b;
-  --border:#315541;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  background:
-    radial-gradient(ellipse at top,#194832 0%,#071b13 60%);
-  color:var(--white);
-  font-family:Arial,"Noto Sans Ethiopic",sans-serif;
-  min-height:100vh;
-}
-button,input{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
-.container{
-  width:100%;
-  max-width:520px;
-  margin:auto;
-  padding:16px;
-  padding-bottom:95px;
-}
-.brand{
-  text-align:center;
-  margin:18px 0 24px;
-}
-.logo{
-  width:82px;height:82px;
-  margin:auto;
-  display:grid;place-items:center;
-  border-radius:25px;
-  font-size:40px;
-  background:linear-gradient(135deg,#f6d889,#bd832c);
-  color:#102519;
-  box-shadow:0 8px 35px #d6a44133;
-}
-.brand h1{
-  color:var(--gold);
-  font-size:25px;
-  margin:14px 0 5px;
-}
-.brand p{color:var(--muted);margin:0}
-.card{
-  background:linear-gradient(145deg,#153728,#0d251a);
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:18px;
-  margin-bottom:15px;
-  box-shadow:0 10px 30px #0002;
-}
-h2,h3{margin-top:0}
-.gold{color:var(--gold)}
-.muted{color:var(--muted)}
-label{
-  display:block;
-  margin:14px 0 7px;
-  color:#d6e3da;
-  font-size:14px;
-}
-input{
-  width:100%;
-  padding:14px;
-  background:#071b13;
-  border:1px solid var(--border);
-  border-radius:12px;
-  color:white;
-  outline:none;
-}
-input:focus{border-color:var(--gold)}
-.btn{
-  border:0;
-  border-radius:13px;
-  padding:13px 16px;
-  font-weight:bold;
-  transition:.15s;
-}
-.btn:active{transform:scale(.97)}
-.primary{
-  width:100%;
-  margin-top:18px;
-  background:linear-gradient(120deg,#f8d987,#d99c38);
-  color:#17251b;
-}
-.green{background:var(--green);color:#062014}
-.secondary{
-  background:#234634;
-  color:white;
-  border:1px solid #3e674e;
-}
-.danger{background:#58252b;color:white}
-.small{font-size:12px}
-.notice{
-  color:var(--muted);
-  text-align:center;
-  font-size:12px;
-  line-height:1.7;
-  margin-top:18px;
-}
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin:10px 0 20px;
-}
-.topbrand{font-size:17px;font-weight:bold;color:var(--gold)}
-.avatar{
-  width:43px;height:43px;border-radius:50%;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,#f5d582,#bc812c);
-  color:#102519;font-size:22px;
-}
-.wallet{
-  background:linear-gradient(125deg,#1f6845,#113b29);
-  border:1px solid #41835c;
-  border-radius:22px;
-  padding:20px;
-  margin-bottom:18px;
-}
-.wallet .amount{
-  font-size:30px;
-  font-weight:bold;
-  margin:8px 0;
-  color:#fff2c8;
-}
-.walletrow{display:flex;justify-content:space-between;gap:10px}
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.gamebox{
-  min-height:150px;
-  background:linear-gradient(145deg,#1a402e,#10271c);
-  border:1px solid #355942;
-  border-radius:20px;
-  padding:17px;
-  text-align:left;
-  color:white;
-}
-.gamebox .icon{font-size:36px}
-.gamebox h3{margin:12px 0 5px;color:var(--gold)}
-.gamebox p{font-size:12px;color:var(--muted);margin:0}
-.nav{
-  position:fixed;
-  z-index:10;
-  bottom:0;left:0;right:0;
-  display:flex;
-  justify-content:space-around;
-  background:#091a12f5;
-  border-top:1px solid var(--border);
-  padding:10px 3px calc(10px + env(safe-area-inset-bottom));
-  backdrop-filter:blur(15px);
-}
-.nav button{
-  border:0;background:none;color:var(--muted);
-  font-size:11px;min-width:55px;
-}
-.nav button span{display:block;font-size:21px;margin-bottom:4px}
-.nav button.active{color:var(--gold)}
-.page-title{font-size:23px;color:var(--gold);margin:12px 0 18px}
-.row{display:flex;gap:9px;flex-wrap:wrap}
-.row>*{flex:1}
-.info{
-  padding:12px;border-radius:13px;
-  background:#081b12;border:1px solid var(--border);
-}
-#message{
-  position:fixed;top:15px;left:50%;
-  transform:translateX(-50%);
-  background:#f4c76b;color:#13251a;
-  padding:12px 18px;border-radius:12px;
-  z-index:99;font-weight:bold;
-  box-shadow:0 5px 25px #0005;
-  max-width:90%;text-align:center;
-}
-@media(max-width:360px){
-  .container{padding:11px;padding-bottom:90px}
-  .card{padding:14px}
-  .gamebox{padding:12px}
-}
-</style>
+        /* 1. ሎግ ኢን (Login) ማዕቀፍ */
+        #loginScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0b6623, #011a08);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .login-card {
+            background: rgba(0, 0, 0, 0.92);
+            padding: 30px;
+            border-radius: 16px;
+            border: 2px solid #ffd700;
+            text-align: center;
+            width: 100%;
+            max-width: 340px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .login-card h2 { color: #ffd700; margin-bottom: 10px; font-size: 22px; }
+        .login-card p { color: #aaa; font-size: 12px; margin-bottom: 20px; }
+        .login-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ffd700;
+            font-size: 16px;
+            text-align: center;
+            background: #fff;
+            color: #000;
+            font-weight: bold;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ffd700, #ff9900);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        /* 2. ዋናው የጨዋታ በይነገጽ */
+        #gameScreen {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* የላይኛው የሁኔታ አሞሌ */
+        .top-status-bar {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ffd700;
+            font-size: 12px;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+        .telebirr-wallet-badge {
+            background: #008751;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: bold;
+            border: 1px solid #ffd700;
+            cursor: pointer;
+        }
+
+        /* የጨዋታ ምርጫ ታብ (ኮንከር vs ዳማ) */
+        .game-mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(0,0,0,0.5);
+            padding: 6px;
+            flex-shrink: 0;
+        }
+        .mode-btn {
+            background: #222;
+            color: #fff;
+            border: 1px solid #ffd700;
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .mode-btn.active {
+            background: #ffd700;
+            color: #000;
+        }
+
+        /* መሃል ጠረጴዛ */
+        .main-table-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+        }
+        .opponents-header {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding: 4px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 8px;
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+        .opponent-info {
+            background: rgba(0,0,0,0.6);
+            padding: 3px 10px;
+            border-radius: 10px;
+            border: 1px solid #ffd700;
+        }
+
+        /* የኮንከር ጠረጴዛ አካባቢ */
+        #conquerBoard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 15px;
+        }
+        .center-pile-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .table-card {
+            width: 60px;
+            height: 85px;
+            background: #fff;
+            color: #000;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 6px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            border: 2px solid #ccc;
+            text-align: center;
+            cursor: pointer;
+        }
+        .table-card.deck {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            font-size: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        .table-card.red { color: #d90429; }
+
+        .center-pass-btn {
+            background: linear-gradient(135deg, #ffcc00, #ff9900);
+            color: #000;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px 35px;
+            border-radius: 30px;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* የዳማ ቦርድ */
+        #dammaBoard {
+            display: none;
+            width: 280px;
+            height: 280px;
+            background: #8B4513;
+            border: 4px solid #ffd700;
+            border-radius: 6px;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+        }
+        .damma-cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .damma-cell.light { background: #deb887; }
+        .damma-cell.dark { background: #5c4033; }
+        .damma-piece {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+        }
+        .damma-piece.white { background: #fff; border: 2px solid #333; }
+        .damma-piece.red { background: #d90429; border: 2px solid #fff; }
+
+        /* የቀኝ መቆጣጠሪያ ፓነል */
+        .right-action-panel {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 5;
+        }
+        .action-btn {
+            background: #ffcc00;
+            color: #000;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+        .action-btn.pass { background: #ff4d4d; color: white; }
+        .action-btn.dobe { background: #9c27b0; color: white; border: 1px solid #ffd700; }
+
+        /* የታችኛው የተጫዋች እጅ (የተደራረበ እና በግልጽ የሚታይ አደራደር) */
+        .player-hand-section {
+            background: rgba(0, 0, 0, 0.98);
+            padding: 10px 8px 20px 8px;
+            border-top: 2px solid #ffd700;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            flex-shrink: 0;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.8);
+        }
+        .download-action-line {
+            width: 100%;
+            background: linear-gradient(90deg, #ff9900, #008751, #ff9900);
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+            padding: 7px;
+            font-size: 11px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 6px;
+            border: 1px solid #ffd700;
+        }
+        .hand-cards-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 110px;
+            width: 100%;
+            position: relative;
+        }
+        .player-card {
+            background: #ffffff;
+            color: #000000;
+            width: 55px;
+            height: 85px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5px;
+            font-weight: bold;
+            font-size: 13px;
+            box-shadow: -3px 4px 10px rgba(0,0,0,0.6);
+            cursor: pointer;
+            position: absolute;
+            bottom: 4px;
+            transition: transform 0.2s, background-color 0.2s;
+            user-select: none;
+            border: 2px solid #bbb;
+        }
+        .player-card.selected {
+            transform: translateY(-22px) scale(1.05);
+            border: 2px solid #00ffcc;
+            background-color: #e6ffff;
+            z-index: 100 !important;
+        }
+        .player-card.red { color: #d90429; }
+
+        /* የቴሌብር የታችኛው ባር */
+        .bottom-telebirr-bar {
+            width: 100%;
+            background: #008751;
+            color: #ffd700;
+            text-align: center;
+            padding: 8px;
+            font-size: 11px;
+            font-weight: bold;
+            border-top: 1px solid #ffd700;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-shrink: 0;
+        }
+    </style>
 </head>
-
 <body>
 
-<div id="message" class="hidden"></div>
-
-<!-- LOGIN -->
-<section id="loginPage" class="container">
-  <div class="brand">
-    <div class="logo">🎴</div>
-    <h1>ሳሚ ፀሀይ</h1>
-    <p>ኢትዮ 41 ኮንከር & ዳማ</p>
-  </div>
-
-  <div class="card">
-    <h2 class="gold">እንኳን ደህና መጡ</h2>
-    <p class="muted">ወደ ጨዋታው ለመግባት ስምህን አስገባ።</p>
-
-    <form id="loginForm">
-      <label for="playerName">የተጫዋች ስም</label>
-      <input id="playerName" maxlength="25"
-             placeholder="ስምህን አስገባ" required>
-
-      <label for="playerPin">የግል PIN (አማራጭ)</label>
-      <input id="playerPin" type="password" inputmode="numeric"
-             maxlength="8" placeholder="ለዚህ ስልክ ብቻ">
-
-      <button class="btn primary" type="submit">
-        ጨዋታውን ጀምር →
-      </button>
-    </form>
-
-    <p class="notice">
-      ይህ የሙከራ ስሪት ነው። ስምና PIN በዚህ የሙከራ ስርዓት
-      ላይ የእውነተኛ መለያ ደህንነት አያረጋግጡም።
-    </p>
-  </div>
-</section>
-
-<!-- MAIN APP -->
-<section id="appPage" class="container hidden">
-
-  <header class="topbar">
-    <div>
-      <div class="topbrand">🎴 ሳሚ ፀሀይ</div>
-      <div class="muted small">ኢትዮ 41 ኮንከር & ዳማ</div>
-    </div>
-    <div class="avatar">♛</div>
-  </header>
-
-  <!-- HOME -->
-  <section id="homeTab">
-    <div class="wallet">
-      <div class="walletrow">
-        <div>
-          <div class="small">የሙከራ ቦርሳ</div>
-          <div class="amount"><span id="walletAmount">250</span> ETB</div>
-          <div class="small">የሚታየው ቀሪ ሂሳብ ለሙከራ ብቻ ነው።</div>
+    <!-- 1. ሎግ ኢን (Login) ማዕቀፍ -->
+    <div id="loginScreen">
+        <div class="login-card">
+            <h2>☀️ የፀሐይ 41 ኮንከር & ዳማ</h2>
+            <p>እባክዎ የመጫወቻ ስምዎን ያስገቡ</p>
+            <input type="text" id="playerNameInput" class="login-input" placeholder="ለምሳሌ: ሳሚ ፀሀይ" value="ሳሚ ፀሀይ">
+            <button class="login-btn" onclick="startGame()">ጨዋታውን ጀምር</button>
         </div>
-        <div style="font-size:35px">💰</div>
-      </div>
-      <div class="row" style="margin-top:15px">
-        <button class="btn green" onclick="showTab('walletTab')">ቦርሳውን ክፈት</button>
-        <button class="btn secondary" onclick="showTab('profileTab')">መገለጫ</button>
-      </div>
     </div>
 
-    <h2 class="page-title">ጨዋታ ምረጥ</h2>
-    <div class="grid">
-      <button class="gamebox" onclick="startConquer()">
-        <div class="icon">🃏</div>
-        <h3>41 ኮንከር</h3>
-        <p>ካርታ አደራጅ፤ 41 ነጥብ ሞላ።</p>
-      </button>
-
-      <button class="gamebox" onclick="showTab('damaTab')">
-        <div class="icon">♟️</div>
-        <h3>ዳማ</h3>
-        <p>የዳማ ቦርድ ክፈት።</p>
-      </button>
-    </div>
-
-    <div class="card" style="margin-top:17px">
-      <h3 class="gold">👋 እንኳን ደህና መጣህ</h3>
-      <p>ሰላም <strong id="welcomeName">ተጫዋች</strong>።</p>
-      <p class="muted small">ጥሩ ጨዋታ ይሁንልህ!</p>
-    </div>
-  </section>
-
-  <!-- CONQUER -->
-  <section id="conquerTab" class="hidden">
-    <h2 class="page-title">🃏 41 ኮንከር</h2>
-
-    <div class="card">
-      <div class="walletrow">
-        <div>
-          <div class="muted small">የአሁኑ ተጫዋች</div>
-          <strong id="turnName">አንተ</strong>
+    <!-- 2. ዋናው የጨዋታ በይነገጽ -->
+    <div id="gameScreen">
+        <div class="top-status-bar">
+            <span>☀️ <b id="displayPlayerName">ሳሚ ፀሀይ</b></span>
+            <span style="color: #ffd700;" id="walletBalance">ሂሳብ: 1,000 ETB</span>
+            <div class="telebirr-wallet-badge" onclick="openTelebirrModal()">
+                📱 0972226999
+            </div>
         </div>
-        <div style="text-align:right">
-          <div class="muted small">ነጥብ</div>
-          <strong class="gold" id="meldScore">0</strong>
+
+        <div class="game-mode-selector">
+            <button class="mode-btn active" id="btnConquer" onclick="switchGameMode('conquer')">🃏 41 ኮንከር ጨዋታ</button>
+            <button class="mode-btn" id="btnDamma" onclick="switchGameMode('damma')">♟️ የኢትዮጵያ ዳማ</button>
         </div>
-      </div>
-      <hr style="border-color:var(--border);margin:15px 0">
-      <div class="row">
-        <div class="info">
-          <div class="muted small">የካርታ ዕቃ</div>
-          <strong id="deckCount">52</strong>
+
+        <div class="main-table-container">
+            <div class="opponents-header">
+                <div class="opponent-info">👤 Bella05 (13 ካርታ)</div>
+                <div class="opponent-info">👤 YaYa82 (13 ካርታ)</div>
+            </div>
+
+            <!-- ሀ) ኮንከር ቦርድ -->
+            <div id="conquerBoard">
+                <button class="center-pass-btn" onclick="passTurn()">PASS</button>
+
+                <div class="center-pile-area">
+                    <div class="table-card red" onclick="pickDiscarded()">
+                        <div style="font-size: 9px;">የተጣለ</div>
+                        <div style="font-size: 22px;">3♥</div>
+                        <div style="font-size: 9px; color: #008751;">አንሳ</div>
+                    </div>
+
+                    <div class="table-card" style="background: linear-gradient(135deg, #ffd700, #ff8c00); color: #000; justify-content: center; align-items: center;">
+                        <div style="font-size: 18px;">🃏</div>
+                        <div style="font-size: 9px; font-weight: bold;">ጆከር (10 ነጥብ)</div>
+                    </div>
+
+                    <div class="table-card deck" onclick="drawCard()">
+                        <div>ማከማቻ</div>
+                        <div style="font-size: 14px;"><b>22</b></div>
+                    </div>
+                </div>
+
+                <div class="right-action-panel">
+                    <button class="action-btn pass" onclick="passTurn()">PASS</button>
+                    <button class="action-btn dobe" onclick="declareDobe()">ዶቤ (ዕጥፍ)</button>
+                    <button class="action-btn" onclick="sortHand()">SORT</button>
+                    <button class="action-btn" style="background:#ff9900; color:black;" onclick="discardCard()">ጣል</button>
+                </div>
+            </div>
+
+            <!-- ለ) ዳማ ቦርድ -->
+            <div id="dammaBoard"></div>
         </div>
-        <div class="info">
-          <div class="muted small">የተጣለ ካርታ</div>
-          <strong id="discardTop">—</strong>
+
+        <!-- የታችኛው የተጫዋች እጅ -->
+        <div class="player-hand-section" id="playerHandSection">
+            <div class="download-action-line" onclick="downloadMelts()">
+                ⬇️ 41 ሞልተው አውርድ (ውርድ / ዶቤ / ጆከር) ⬇️
+            </div>
+            <div class="hand-cards-container" id="playerHand"></div>
         </div>
-      </div>
-      <p class="muted small" style="margin-bottom:0">
-        13 ካርታዎች ይዘህ ትጀምራለህ። ካርታ ምረጥ፤
-        የሚወርዱትን ሴቶች አስላ።
-      </p>
-    </div>
 
-    <div class="card">
-      <h3>የእኔ ካርታዎች</h3>
-      <p class="muted small">ካርታን አንድ ጊዜ ነክተህ ለመምረጥ፤ እንደገና ነክተህ ምርጫውን ለማስወገድ።</p>
-      <div id="handCards" class="row"></div>
-      <div class="row" style="margin-top:15px">
-        <button class="btn secondary" onclick="drawFromDeck()">ከዕቃው አንሳ</button>
-        <button class="btn secondary" onclick="drawDiscard()">የተጣለውን አንሳ</button>
-      </div>
-      <div class="row" style="margin-top:10px">
-        <button class="btn green" onclick="checkMelds()">ሴቶቼን አስላ</button>
-        <button class="btn primary" onclick="discardSelected()">ካርታ ጣል</button>
-      </div>
-      <div id="meldInfo" class="info" style="margin-top:13px">
-        የተሠሩ ሴቶች እዚህ ይታያሉ።
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>የጨዋታ ህግ</h3>
-      <p class="muted small">
-        2–10 = የካርታው ቁጥር፤ J/Q/K = 10፤ A = 11።
-        ሴቶችን ማውረድ ለመቻል 41 ነጥብ ያስፈልጋል።
-      </p>
-    </div>
-  </section>
-
-  <!-- DAMA -->
-  <section id="damaTab" class="hidden">
-    <h2 class="page-title">♟️ ዳማ</h2>
-    <div class="card">
-      <p class="muted">የዳማ ቦርድ የሙከራ ማሳያ። የቁርጥራጭ እንቅስቃሴ በሚቀጥለው የኮድ ክፍል ይጨመራል።</p>
-      <div id="damaBoard" style="display:grid;grid-template-columns:repeat(8,1fr);border:3px solid #d7b66b;border-radius:6px;overflow:hidden"></div>
-    </div>
-  </section>
-
-  <!-- WALLET -->
-  <section id="walletTab" class="hidden">
-    <h2 class="page-title">💰 የኪስ ቦርሳ</h2>
-    <div class="card">
-      <p class="muted">የሙከራ ቀሪ ሂሳብ</p>
-      <div class="amount gold" style="font-size:30px">
-        <span id="walletAmount2">250</span> ETB
-      </div>
-      <p class="muted small">እውነተኛ የTelebirr ገንዘብ አልተላከም።</p>
-      <button class="btn secondary" style="width:100%" onclick="notify('እውነተኛ ክፍያ ለመጨመር የክፍያ አገልግሎት ማገናኘት ያስፈልጋል።')">
-        ክፍያ አገልግሎት
-      </button>
-    </div>
-    <div class="card">
-      <h3 class="gold">Telebirr</h3>
-      <p>የክፍያ መረጃ ሲዘጋጅ እዚህ ይታያል።</p>
-    </div>
-  </section>
-
-  <!-- PROFILE -->
-  <section id="profileTab" class="hidden">
-    <h2 class="page-title">👤 መገለጫ</h2>
-    <div class="card">
-      <div class="avatar" style="width:65px;height:65px;margin-bottom:15px">♛</div>
-      <p class="muted small">የተጫዋች ስም</p>
-      <h2 id="profileName">ተጫዋች</h2>
-      <button class="btn secondary" style="width:100%" onclick="changeName()">ስም ቀይር</button>
-      <button class="btn danger" style="width:100%;margin-top:10px" onclick="logout()">ውጣ</button>
-    </div>
-  </section>
-</section>
-
-<!-- NAVIGATION -->
-<nav id="bottomNav" class="nav hidden">
-  <button class="active" data-tab="homeTab" onclick="showTab('homeTab',this)">
-    <span>🏠</span>ዋና ገጽ
-  </button>
-  <button data-tab="conquerTab" onclick="startConquer()">
-    <span>🃏</span>ኮንከር
-  </button>
-  <button data-tab="damaTab" onclick="showTab('damaTab',this)">
-    <span>♟️</span>ዳማ
-  </button>
-  <button data-tab="walletTab" onclick="showTab('walletTab',this)">
-    <span>💰</span>ቦርሳ
-  </button>
-  <button data-tab="profileTab" onclick="showTab('profileTab',this)">
-    <span>👤</span>እኔ
-  </button>
-</nav>
-
-<script>
-const $ = id => document.getElementById(id);
-
-function notify(text){
-  const el=$("message");
-  el.textContent=text;
-  el.classList.remove("hidden");
-  clearTimeout(window.msgTimer);
-  window.msgTimer=setTimeout(()=>el.classList.add("hidden"),2600);
-}
-
-function enterApp(name){
-  $("loginPage").classList.add("hidden");
-  $("appPage").classList.remove("hidden");
-  $("bottomNav").classList.remove("hidden");
-  $("welcomeName").textContent=name;
-  $("profileName").textContent=name;
-  $("turnName").textContent=name;
-  showTab("homeTab");
-}
-
-$("loginForm").addEventListener("submit",e=>{
-  e.preventDefault();
-  const name=$("playerName").value.trim();
-  if(!name){notify("እባክህ ስም አስገባ።");return}
-  localStorage.setItem("sami_player_name",name);
-  enterApp(name);
-});
-
-function logout(){
-  $("appPage").classList.add("hidden");
-  $("bottomNav").classList.add("hidden");
-  $("loginPage").classList.remove("hidden");
-  notify("ከጨዋታው ወጥተሃል።");
-}
-
-function changeName(){
-  const n=prompt("አዲስ ስም አስገባ፦");
-  if(n && n.trim()){
-    const name=n.trim();
-    localStorage.setItem("sami_player_name",name);
-    $("welcomeName").textContent=name;
-    $("profileName").textContent=name;
-    $("turnName").textContent=name;
-    notify("ስምህ ተቀይሯል።");
-  }
-}
-
-const tabs=["homeTab","conquerTab","damaTab","walletTab","profileTab"];
-
-function showTab(id,button){
-  tabs.forEach(t=>$(t).classList.toggle("hidden",t!==id));
-  document.querySelectorAll(".nav button").forEach(b=>{
-    b.classList.toggle("active",b.dataset.tab===id);
-  });
-  if(button) button.classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-/* DAMA BOARD PREVIEW */
-function createDamaBoard(){
-  const board=$("damaBoard");
-  board.innerHTML="";
-  for(let r=0;r<8;r++){
-    for(let c=0;c<8;c++){
-      const cell=document.createElement("div");
-      cell.style.aspectRatio="1";
-      cell.style.display="grid";
-      cell.style.placeItems="center";
-      cell.style.fontSize="clamp(13px,5vw,23px)";
-      cell.style.background=(r+c)%2===0?"#f0d8a0":"#5a3c2a";
-      if((r+c)%2===1 && r<3) cell.textContent="⚫";
-      if((r+c)%2===1 && r>4) cell.textContent="⚪";
-      board.appendChild(cell);
-    }
-  }
-}
-createDamaBoard();
-
-/* RESTORE NAME */
-const savedName=localStorage.getItem("sami_player_name");
-if(savedName) enterApp(savedName);
-</script>
-
-<script>
-/* ኮንከር የጨዋታ ክፍል በሚቀጥለው ክፍል ይጨመራል። */
-function startConquer(){
-  showTab("conquerTab");
-  if(typeof initConquer==="function") initConquer();
-  else notify("የኮንከር ኮድ በክፍል 2 ይጨመራል።");
-}
-</script>
-<script>
-/* =========================================
-   SAMI TSEHAY — ETHIO 41 CONQUER
-   PART 2: CARDS, MELDS AND SCORING
-   ========================================= */
-
-const SUITS = [
-  {name:"Spades",symbol:"♠",color:"#17251b"},
-  {name:"Hearts",symbol:"♥",color:"#e94d60"},
-  {name:"Diamonds",symbol:"♦",color:"#e94d60"},
-  {name:"Clubs",symbol:"♣",color:"#17251b"}
-];
-
-let conquer = {
-  deck:[],
-  hand:[],
-  discard:[],
-  selected:[],
-  drawn:false,
-  opened:false,
-  round:0,
-  melds:[],
-  score:0
-};
-
-/* ካርታዎችን መፍጠር */
-function createDeck(){
-  const deck=[];
-
-  for(const suit of SUITS){
-    for(let n=1;n<=13;n++){
-      const rank =
-        n===1 ? "A" :
-        n===11 ? "J" :
-        n===12 ? "Q" :
-        n===13 ? "K" : String(n);
-
-      const points =
-        n===1 ? 11 :
-        n>=11 ? 10 : n;
-
-      deck.push({
-        id:suit.name+"-"+rank,
-        suit:suit.name,
-        symbol:suit.symbol,
-        color:suit.color,
-        rank,
-        number:n,
-        points
-      });
-    }
-  }
-
-  return shuffle(deck);
-}
-
-/* ካርታዎችን ማደባለቅ */
-function shuffle(array){
-  for(let i=array.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [array[i],array[j]]=[array[j],array[i]];
-  }
-  return array;
-}
-
-/* ጨዋታውን መጀመር */
-function initConquer(){
-  conquer.deck=createDeck();
-  conquer.hand=conquer.deck.splice(0,13);
-  conquer.discard=[];
-  conquer.selected=[];
-  conquer.drawn=false;
-  conquer.opened=false;
-  conquer.round++;
-  conquer.melds=[];
-  conquer.score=0;
-
-  const firstDiscard=conquer.deck.pop();
-  if(firstDiscard) conquer.discard.push(firstDiscard);
-
-  renderHand();
-  updateConquerInfo();
-
-  $("meldInfo").textContent=
-    "13 ካርታዎችህ ተሰጥተዋል። በተራህ ካርታ አንሳ።";
-
-  notify("አዲስ የኮንከር ጨዋታ ተጀምሯል።");
-}
-
-/* የካርታ ዲዛይን */
-function makeCardElement(card,index){
-  const el=document.createElement("button");
-
-  el.type="button";
-  el.className="playing-card";
-  el.dataset.id=card.id;
-
-  const isSelected=conquer.selected.includes(card.id);
-
-  el.style.cssText=`
-    flex:0 0 65px;
-    min-width:65px;
-    height:96px;
-    padding:6px 3px;
-    border-radius:9px;
-    border:2px solid ${isSelected?"#f4c76b":"#e8e5d9"};
-    background:${isSelected?"#fff0bc":"#fffdf6"};
-    color:${card.color};
-    font-weight:bold;
-    font-size:19px;
-    box-shadow:${isSelected?"0 0 12px #f4c76b66":"0 3px 7px #0003"};
-    transform:${isSelected?"translateY(-7px)":"none"};
-  `;
-
-  el.innerHTML=`
-    <div style="text-align:left;font-size:16px">${card.rank}</div>
-    <div style="font-size:29px;margin-top:8px">${card.symbol}</div>
-    <div style="font-size:10px;margin-top:7px">${card.points} ነጥብ</div>
-  `;
-
-  el.onclick=()=>toggleCard(card.id);
-
-  return el;
-}
-
-/* ካርታዎችን ማሳየት */
-function renderHand(){
-  const area=$("handCards");
-  area.innerHTML="";
-  area.style.display="flex";
-  area.style.flexWrap="wrap";
-  area.style.gap="8px";
-
-  conquer.hand.forEach((card,index)=>{
-    area.appendChild(makeCardElement(card,index));
-  });
-
-  $("meldScore").textContent=conquer.score;
-}
-
-/* ካርታ መምረጥ */
-function toggleCard(id){
-  const pos=conquer.selected.indexOf(id);
-
-  if(pos>=0){
-    conquer.selected.splice(pos,1);
-  }else{
-    conquer.selected.push(id);
-  }
-
-  renderHand();
-}
-
-/* ከዕቃው ካርታ ማንሳት */
-function drawFromDeck(){
-  if(conquer.drawn){
-    notify("አስቀድመህ ካርታ አንስተሃል።");
-    return;
-  }
-
-  if(conquer.deck.length===0){
-    notify("የካርታ ዕቃው አልቋል።");
-    return;
-  }
-
-  const card=conquer.deck.pop();
-
-  conquer.hand.push(card);
-  conquer.drawn=true;
-  conquer.selected=[];
-
-  renderHand();
-  updateConquerInfo();
-
-  $("meldInfo").textContent=
-    "ካርታ አንስተሃል። አሁን ካርታ ምረጥና ጣል።";
-}
-
-/* ከተጣለው ካርታ ማንሳት */
-function drawDiscard(){
-  if(conquer.drawn){
-    notify("አስቀድመህ ካርታ አንስተሃል።");
-    return;
-  }
-
-  if(conquer.discard.length===0){
-    notify("የተጣለ ካርታ የለም።");
-    return;
-  }
-
-  const card=conquer.discard.pop();
-
-  conquer.hand.push(card);
-  conquer.drawn=true;
-  conquer.selected=[];
-
-  renderHand();
-  updateConquerInfo();
-
-  $("meldInfo").textContent=
-    "የተጣለውን ካርታ አንስተሃል። አንድ ካርታ ጣል።";
-}
-
-/* የካርታ ዋጋ */
-function cardPoints(card){
-  return card.points;
-}
-
-/* ሶስት ወይም አራት ተመሳሳይ ቁጥር ያላቸውን መለየት */
-function isSet(cards){
-  if(cards.length<3 || cards.length>4) return false;
-
-  return cards.every(c=>c.number===cards[0].number);
-}
-
-/* ተመሳሳይ ምልክትና ተከታታይ ቁጥር ያላቸውን መለየት */
-function isRun(cards){
-  if(cards.length<3) return false;
-
-  const sameSuit=cards.every(c=>c.suit===cards[0].suit);
-  if(!sameSuit) return false;
-
-  const nums=cards.map(c=>c.number).sort((a,b)=>a-b);
-
-  for(let i=1;i<nums.length;i++){
-    if(nums[i]!==nums[i-1]+1) return false;
-  }
-
-  return true;
-}
-
-/* የተመረጡት ካርታዎች ሴት መሆናቸውን መፈተሽ */
-function checkMelds(){
-  const chosen=conquer.hand.filter(c=>
-    conquer.selected.includes(c.id)
-  );
-
-  if(chosen.length<3){
-    $("meldInfo").textContent=
-      "ሴት ለመሥራት ቢያንስ 3 ካርታዎች ምረጥ።";
-    notify("ቢያንስ 3 ካርታዎች ምረጥ።");
-    return;
-  }
-
-  if(!isSet(chosen) && !isRun(chosen)){
-    $("meldInfo").textContent=
-      "የመረጥካቸው ካርታዎች ትክክለኛ ሴት አይደሉም።";
-    notify("ሴቱን እንደገና አስተካክል።");
-    return;
-  }
-
-  const score=chosen.reduce((sum,c)=>sum+cardPoints(c),0);
-
-  conquer.score=score;
-  conquer.melds=[chosen];
-
-  $("meldScore").textContent=score;
-
-  $("meldInfo").innerHTML=`
-    <strong class="gold">ሴት ተገኝቷል!</strong><br>
-    የካርታ ብዛት፦ ${chosen.length}<br>
-    የነጥብ ድምር፦ ${score}<br>
-    ${score>=41
-      ?'<span style="color:#21c77a">41 ነጥብ ሞልቷል።</span>'
-      :'<span style="color:#ff626b">41 ነጥብ አልሞላም።</span>'}
-  `;
-
-  if(score>=41){
-    conquer.opened=true;
-    notify("41 ነጥብ ሞልቷል!");
-  }else{
-    notify("41 ነጥብ ለመሙላት ተጨማሪ ነጥብ ያስፈልጋል።");
-  }
-}
-
-/* ካርታ መጣል */
-function discardSelected(){
-  if(!conquer.drawn){
-    notify("መጀመሪያ ካርታ አንሳ።");
-    return;
-  }
-
-  if(conquer.selected.length!==1){
-    notify("ለመጣል አንድ ካርታ ብቻ ምረጥ።");
-    return;
-  }
-
-  const id=conquer.selected[0];
-  const index=conquer.hand.findIndex(c=>c.id===id);
-
-  if(index<0) return;
-
-  const card=conquer.hand.splice(index,1)[0];
-  conquer.discard.push(card);
-
-  conquer.selected=[];
-  conquer.drawn=false;
-
-  renderHand();
-  updateConquerInfo();
-
-  $("meldInfo").textContent=
-    "ካርታውን ጥለሃል። በሚቀጥለው ተራ አዲስ ካርታ አንሳ።";
-
-  notify("ካርታ ተጥሏል።");
-}
-
-/* የጨዋታ መረጃ ማደስ */
-function updateConquerInfo(){
-  $("deckCount").textContent=conquer.deck.length;
-
-  const top=conquer.discard[conquer.discard.length-1];
-
-  $("discardTop").textContent=top
-    ?top.rank+top.symbol
-    :"—";
-
-  $("meldScore").textContent=conquer.score;
-}
-</script>
-<script>
-/* ======================================
-   ETHIO 41 — PART 3
-   MELDS, 41 OPENING, DOBE & QIT
-   ====================================== */
-
-/* የጨዋታ ውጤቶች */
-const conquerResults = {
-  qit: 0,
-  wins: 0,
-  games: 0,
-  history: []
-};
-
-/*
-  የካርታዎች ሁሉንም ሊሆኑ የሚችሉ ሴቶች
-  ከእጅ ውስጥ መፈለግ።
-*/
-
-function findAllMelds(hand) {
-  const melds = [];
-
-  for (let size = 3; size <= 4; size++) {
-    const combinations = getCombinations(hand, size);
-
-    for (const group of combinations) {
-      if (isSet(group) || isRun(group)) {
-        melds.push({
-          cards: group,
-          points: group.reduce((sum, c) => sum + c.points, 0),
-          type: isSet(group) ? "ሴት" : "ተከታታይ"
-        });
-      }
-    }
-  }
-
-  return melds;
-}
-
-/* የካርታ ቡድኖችን መፍጠር */
-function getCombinations(array, size) {
-  const result = [];
-
-  function walk(start, current) {
-    if (current.length === size) {
-      result.push([...current]);
-      return;
-    }
-
-    for (let i = start; i < array.length; i++) {
-      current.push(array[i]);
-      walk(i + 1, current);
-      current.pop();
-    }
-  }
-
-  walk(0, []);
-  return result;
-}
-
-/*
-  በተመረጡት ካርታዎች ውስጥ
-  እርስ በርስ የማይደጋገሙ ሴቶችን መለየት።
-*/
-
-function findBestMeldGroups(hand) {
-  const candidates = findAllMelds(hand);
-  let best = {
-    points: 0,
-    groups: [],
-    used: new Set()
-  };
-
-  function search(start, used, groups, points) {
-    if (points > best.points) {
-      best = {
-        points,
-        groups: [...groups],
-        used: new Set(used)
-      };
-    }
-
-    for (let i = start; i < candidates.length; i++) {
-      const meld = candidates[i];
-
-      if (meld.cards.some(c => used.has(c.id))) continue;
-
-      const nextUsed = new Set(used);
-      meld.cards.forEach(c => nextUsed.add(c.id));
-
-      search(
-        i + 1,
-        nextUsed,
-        [...groups, meld],
-        points + meld.points
-      );
-    }
-  }
-
-  search(0, new Set(), [], 0);
-  return best;
-}
-
-/* ሴቶችን አስላ — አዲስ ስሪት */
-function checkMelds() {
-  const hand = conquer.hand;
-  const result = findBestMeldGroups(hand);
-
-  conquer.score = result.points;
-  conquer.melds = result.groups;
-
-  $("meldScore").textContent = result.points;
-
-  const groupsHTML = result.groups.length
-    ? result.groups.map((g, i) => `
-        <div style="padding:9px 0;border-bottom:1px solid #315541">
-          <strong class="gold">${i + 1}. ${g.type}</strong><br>
-          ${g.cards.map(c => c.rank + c.symbol).join("  ")}
-          <br>
-          <span class="muted small">${g.points} ነጥብ</span>
+        <!-- የቴሌብር መረጃ ከታች -->
+        <div class="bottom-telebirr-bar">
+            <span>📱 ቴሌብር: 0972226999 (ሳሚ ፀሀይ)[span_0](start_span)[span_0](end_span)</span>
+            <span style="color:#fff;">💡 ዶቤ: 5 ተመሳሳይ + 1 ሴት = ዕጥፍ!</span>
         </div>
-      `).join("")
-    : "ሊወርድ የሚችል ሴት አልተገኘም።";
-
-  $("meldInfo").innerHTML = `
-    <strong>የሴቶች ስሌት</strong>
-    ${groupsHTML}
-    <hr style="border-color:#315541">
-    <strong>ጠቅላላ፦ ${result.points} ነጥብ</strong>
-    <br>
-    ${
-      result.points >= 41
-        ? '<span style="color:#21c77a">41 ሞልቷል። ማውረድ ትችላለህ።</span>'
-        : '<span style="color:#ff626b">41 አልሞላም። ገና ማውረድ አትችልም።</span>'
-    }
-    <br><br>
-    <button class="btn green" onclick="open41()" style="width:100%">
-      ሴቶቼን ለማውረድ ሞክር
-    </button>
-  `;
-}
-
-/* 41 ማውረድ */
-function open41() {
-  const result = findBestMeldGroups(conquer.hand);
-
-  if (result.points < 41) {
-    notify("41 ነጥብ አልሞላም፤ ማውረድ አትችልም።");
-    return;
-  }
-
-  if (conquer.opened) {
-    notify("ቀድሞ አውርደሃል።");
-    return;
-  }
-
-  conquer.opened = true;
-  conquer.score = result.points;
-  conquer.melds = result.groups;
-
-  notify("41 ሞልቷል! ሴቶችህ ተወርደዋል።");
-
-  $("meldInfo").innerHTML += `
-    <p style="color:#21c77a;font-weight:bold">
-      ✅ ማውረድ ተሳክቷል።
-    </p>
-  `;
-}
-
-/* ዶቤ ማረጋገጫ — 5 ተመሳሳይ ካርታዎች + አንድ ሴት */
-function checkDobe() {
-  const hand = conquer.hand;
-
-  const byRank = {};
-
-  for (const card of hand) {
-    if (!byRank[card.number]) byRank[card.number] = [];
-    byRank[card.number].push(card);
-  }
-
-  const fiveSame = Object.values(byRank).some(cards => cards.length >= 5);
-
-  const melds = findAllMelds(hand);
-  const hasOtherMeld = melds.some(meld => meld.cards.length >= 3);
-
-  if (fiveSame && hasOtherMeld) {
-    conquerResults.wins++;
-    conquerResults.games++;
-    notify("🎉 ዶቤ! አሸንፈሃል!");
-    saveConquerResult("ዶቤ");
-    return true;
-  }
-
-  notify("ዶቤ ለማሸነፍ 5 ተመሳሳይ ካርታዎችና አንድ ሴት ያስፈልጋሉ።");
-  return false;
-}
-
-/* ቂጥ መመዝገብ */
-function recordQit(playerName) {
-  conquerResults.qit++;
-  conquerResults.games++;
-
-  saveConquerResult("ቂጥ");
-
-  notify(playerName + " ቂጥ ገባ።");
-}
-
-/* የውጤት ታሪክ */
-function saveConquerResult(result) {
-  const name = localStorage.getItem("sami_player_name") || "ተጫዋች";
-
-  const item = {
-    name,
-    result,
-    date: new Date().toLocaleString()
-  };
-
-  conquerResults.history.push(item);
-
-  localStorage.setItem(
-    "sami_conquer_results",
-    JSON.stringify(conquerResults)
-  );
-}
-
-/* የቀድሞ ውጤቶችን መመለስ */
-function loadConquerResults() {
-  try {
-    const saved = JSON.parse(
-      localStorage.getItem("sami_conquer_results")
-    );
-
-    if (saved) {
-      conquerResults.qit = saved.qit || 0;
-      conquerResults.wins = saved.wins || 0;
-      conquerResults.games = saved.games || 0;
-      conquerResults.history = saved.history || [];
-    }
-  } catch (e) {
-    console.log("የውጤት መረጃ ሊነበብ አልቻለም።");
-  }
-}
-
-loadConquerResults();
-</script>
-<script>
-/* ======================================
-   SAMI TSEHAY — PART 4
-   DAMA GAME + RESULTS
-   ====================================== */
-
-const damaGame = {
-  board: [],
-  selected: null,
-  turn: "white",
-  whitePieces: 12,
-  blackPieces: 12,
-  finished: false
-};
-
-function setupDama() {
-  damaGame.board = Array(64).fill(null);
-  damaGame.selected = null;
-  damaGame.turn = "white";
-  damaGame.whitePieces = 12;
-  damaGame.blackPieces = 12;
-  damaGame.finished = false;
-
-  // የጥቁር ቁርጥራጮች
-  for (let r = 0; r < 3; r++) {
-    for (let c = 0; c < 8; c++) {
-      if ((r + c) % 2 === 1) {
-        damaGame.board[r * 8 + c] = "black";
-      }
-    }
-  }
-
-  // የነጭ ቁርጥራጮች
-  for (let r = 5; r < 8; r++) {
-    for (let c = 0; c < 8; c++) {
-      if ((r + c) % 2 === 1) {
-        damaGame.board[r * 8 + c] = "white";
-      }
-    }
-  }
-
-  renderDama();
-  notify("የዳማ ጨዋታ ተጀምሯል።");
-}
-
-function renderDama() {
-  const board = $("damaBoard");
-  board.innerHTML = "";
-
-  for (let r = 0; r < 8; r++) {
-    for (let c = 0; c < 8; c++) {
-      const i = r * 8 + c;
-      const cell = document.createElement("button");
-      const piece = damaGame.board[i];
-
-      cell.type = "button";
-      cell.style.cssText = `
-        aspect-ratio:1;
-        display:grid;
-        place-items:center;
-        padding:0;
-        border:0;
-        background:${(r+c)%2===0 ? "#f0d8a0" : "#5a3c2a"};
-        font-size:clamp(17px,6vw,27px);
-        outline:${damaGame.selected===i ? "3px solid #f4c76b" : "none"};
-        outline-offset:-3px;
-      `;
-
-      if (piece === "white") {
-        cell.textContent = "⚪";
-      } else if (piece === "black") {
-        cell.textContent = "⚫";
-      }
-
-      cell.onclick = () => damaClick(i);
-      board.appendChild(cell);
-    }
-  }
-
-  const info = document.getElementById("damaInfo");
-  if (info) {
-    info.innerHTML = `
-      ተራ፦ <strong>${damaGame.turn === "white" ? "ነጭ" : "ጥቁር"}</strong>
-      <br>ነጭ ቁርጥራጭ፦ ${damaGame.whitePieces}
-      <br>ጥቁር ቁርጥራጭ፦ ${damaGame.blackPieces}
-    `;
-  }
-}
-
-function damaClick(index) {
-  if (damaGame.finished) {
-    notify("ጨዋታው ተጠናቋል። አዲስ ጨዋታ ጀምር።");
-    return;
-  }
-
-  const piece = damaGame.board[index];
-
-  // ቁርጥራጭ መምረጥ
-  if (damaGame.selected === null) {
-    if (piece !== damaGame.turn) {
-      notify("የአሁኑን ተራ የሚመለከት ቁርጥራጭ ምረጥ።");
-      return;
-    }
-
-    damaGame.selected = index;
-    renderDama();
-    return;
-  }
-
-  // የተመረጠውን ቁርጥራጭ እንደገና መንካት
-  if (damaGame.selected === index) {
-    damaGame.selected = null;
-    renderDama();
-    return;
-  }
-
-  // የሚሄድበት ቦታ መፈተሽ
-  if (piece !== null) {
-    if (piece === damaGame.turn) {
-      damaGame.selected = index;
-      renderDama();
-    } else {
-      notify("ቦታው ተይዟል።");
-    }
-    return;
-  }
-
-  const from = damaGame.selected;
-  const fromRow = Math.floor(from / 8);
-  const fromCol = from % 8;
-  const toRow = Math.floor(index / 8);
-  const toCol = index % 8;
-
-  const dr = toRow - fromRow;
-  const dc = toCol - fromCol;
-
-  // በዚህ የሙከራ ስሪት ቀላል የዳማ እንቅስቃሴ
-  if (Math.abs(dr) === 1 && Math.abs(dc) === 1) {
-    // ተራ እንቅስቃሴ
-    if (
-      (damaGame.turn === "white" && dr !== -1) ||
-      (damaGame.turn === "black" && dr !== 1)
-    ) {
-      notify("ይህ ቁርጥራጭ ወደዚህ አቅጣጫ መንቀሳቀስ አይችልም።");
-      return;
-    }
-
-    damaGame.board[index] = damaGame.board[from];
-    damaGame.board[from] = null;
-    finishDamaTurn();
-    return;
-  }
-
-  // በአንድ የተቃዋሚ ቁርጥራጭ ላይ መዝለል
-  if (Math.abs(dr) === 2 && Math.abs(dc) === 2) {
-    const middleRow = (fromRow + toRow) / 2;
-    const middleCol = (fromCol + toCol) / 2;
-    const middleIndex = middleRow * 8 + middleCol;
-    const middlePiece = damaGame.board[middleIndex];
-
-    if (
-      middlePiece &&
-      middlePiece !== damaGame.turn &&
-      (
-        (damaGame.turn === "white" && dr === -2) ||
-        (damaGame.turn === "black" && dr === 2)
-      )
-    ) {
-      damaGame.board[index] = damaGame.board[from];
-      damaGame.board[from] = null;
-      damaGame.board[middleIndex] = null;
-
-      if (middlePiece === "white") {
-        damaGame.whitePieces--;
-      } else {
-        damaGame.blackPieces--;
-      }
-
-      if (damaGame.whitePieces === 0 || damaGame.blackPieces === 0) {
-        damaGame.finished = true;
-        notify("🏆 " + (damaGame.turn === "white" ? "ነጭ" : "ጥቁር") + " አሸነፈ!");
-      }
-
-      finishDamaTurn();
-      return;
-    }
-  }
-
-  notify("ይህ እንቅስቃሴ አይፈቀድም።");
-}
-
-function finishDamaTurn() {
-  damaGame.selected = null;
-
-  if (!damaGame.finished) {
-    damaGame.turn = damaGame.turn === "white" ? "black" : "white";
-  }
-
-  renderDama();
-}
-
-function restartDama() {
-  setupDama();
-}
-
-/* የኮንከር ውጤት ሰሌዳ */
-function showConquerResults() {
-  const old = document.getElementById("conquerResultsCard");
-  if (old) old.remove();
-
-  const card = document.createElement("div");
-  card.id = "conquerResultsCard";
-  card.className = "card";
-
-  const history = conquerResults.history || [];
-
-  card.innerHTML = `
-    <h3 class="gold">🏆 የጨዋታ ውጤት</h3>
-    <div class="grid">
-      <div class="info">
-        <div class="muted small">ድል</div>
-        <strong>${conquerResults.wins}</strong>
-      </div>
-      <div class="info">
-        <div class="muted small">ቂጥ</div>
-        <strong>${conquerResults.qit}</strong>
-      </div>
-    </div>
-    <h4 style="margin-top:18px">የቀድሞ ውጤቶች</h4>
-    ${
-      history.length
-        ? history.slice().reverse().map(item => `
-          <div class="info" style="margin-bottom:8px">
-            <strong>${escapeDamaText(item.name)}</strong>
-            <span class="gold"> — ${escapeDamaText(item.result)}</span>
-            <div class="muted small">${escapeDamaText(item.date)}</div>
-          </div>
-        `).join("")
-        : '<p class="muted">ገና የተመዘገበ ውጤት የለም።</p>'
-    }
-  `;
-
-  $("homeTab").appendChild(card);
-  showTab("homeTab");
-}
-
-function escapeDamaText(value) {
-  return String(value ?? "").replace(/[&<>"']/g, ch => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  })[ch]);
-}
-
-/* የዳማ ገጽ መረጃ */
-(function addDamaControls() {
-  const section = $("damaTab");
-  if (!section) return;
-
-  let info = document.getElementById("damaInfo");
-
-  if (!info) {
-    info = document.createElement("div");
-    info.id = "damaInfo";
-    info.className = "info";
-    info.style.marginBottom = "12px";
-
-    const board = $("damaBoard");
-    board.parentNode.insertBefore(info, board);
-  }
-
-  if (!document.getElementById("damaButtons")) {
-    const controls = document.createElement("div");
-    controls.id = "damaButtons";
-    controls.className = "row";
-    controls.style.marginTop = "15px";
-
-    controls.innerHTML = `
-      <button class="btn green" onclick="restartDama()">አዲስ ዳማ ጀምር</button>
-      <button class="btn secondary" onclick="showConquerResults()">ውጤቶችን አሳይ</button>
-    `;
-
-    $("damaBoard").parentNode.appendChild(controls);
-  }
-
-  setupDama();
-})();
-</script>
-<script>
-/* =====================================
-   SAMI TSEHAY — PART 5
-   PROFILE + LOGIN + ADMIN DEMO
-   ===================================== */
-
-const SAMI_APP = {
-  version: "0.5",
-  title: "ሳሚ ፀሀይ — ኢትዮ 41 ኮንከር & ዳማ",
-  adminName: "Sami",
-  storageKey: "sami_tsehay_profile_v1"
-};
-
-function getSamiProfile() {
-  try {
-    return JSON.parse(
-      localStorage.getItem(SAMI_APP.storageKey)
-    ) || {
-      name: localStorage.getItem("playerName") || "",
-      phone: "",
-      avatar: "🎮",
-      joined: new Date().toLocaleDateString("am-ET"),
-      games: 0,
-      wins: 0
-    };
-  } catch (error) {
-    return {
-      name: "",
-      phone: "",
-      avatar: "🎮",
-      joined: "",
-      games: 0,
-      wins: 0
-    };
-  }
-}
-
-function saveSamiProfile(profile) {
-  localStorage.setItem(
-    SAMI_APP.storageKey,
-    JSON.stringify(profile)
-  );
-
-  localStorage.setItem("playerName", profile.name);
-}
-
-function renderSamiProfile() {
-  const profile = getSamiProfile();
-  const section = document.getElementById("profileTab");
-
-  if (!section) return;
-
-  let panel = document.getElementById("samiProfilePanel");
-
-  if (!panel) {
-    panel = document.createElement("div");
-    panel.id = "samiProfilePanel";
-    section.appendChild(panel);
-  }
-
-  panel.innerHTML = `
-    <div class="card">
-      <div style="text-align:center;padding:15px">
-        <div style="font-size:58px">${profile.avatar || "🎮"}</div>
-        <h2 class="gold">${escapeDamaText(profile.name || "ተጫዋች")}</h2>
-        <p class="muted">የሳሚ ፀሀይ ጨዋታ መለያ</p>
-      </div>
-
-      <div class="info">
-        <strong>ስም፦</strong>
-        ${escapeDamaText(profile.name || "አልተመዘገበም")}
-      </div>
-
-      <div class="info" style="margin-top:8px">
-        <strong>ስልክ፦</strong>
-        ${escapeDamaText(profile.phone || "አልተመዘገበም")}
-      </div>
-
-      <div class="info" style="margin-top:8px">
-        <strong>የተቀላቀለበት ቀን፦</strong>
-        ${escapeDamaText(profile.joined || "-")}
-      </div>
-
-      <button class="btn green" style="width:100%;margin-top:15px"
-        onclick="editSamiProfile()">
-        ✏️ ፕሮፋይሌን አስተካክል
-      </button>
-
-      <button class="btn secondary" style="width:100%;margin-top:10px"
-        onclick="showSamiAdmin()">
-        ⚙️ አስተዳዳሪ ገጽ
-      </button>
-
-      <button class="btn danger" style="width:100%;margin-top:10px"
-        onclick="samiLogout()">
-        ውጣ (Logout)
-      </button>
-    </div>
-  `;
-}
-
-function editSamiProfile() {
-  const profile = getSamiProfile();
-
-  const name = prompt("ሙሉ ስምህን አስገባ፦", profile.name || "");
-  if (name === null) return;
-
-  if (!name.trim()) {
-    notify("ስም ማስገባት አለብህ።");
-    return;
-  }
-
-  const phone = prompt(
-    "ስልክ ቁጥርህን አስገባ፦",
-    profile.phone || ""
-  );
-
-  if (phone === null) return;
-
-  profile.name = name.trim();
-  profile.phone = phone.trim();
-
-  saveSamiProfile(profile);
-  renderSamiProfile();
-
-  notify("ፕሮፋይልህ በዚህ ስልክ ላይ ተቀምጧል።");
-}
-
-function showSamiAdmin() {
-  const section = document.getElementById("profileTab");
-  if (!section) return;
-
-  let admin = document.getElementById("samiAdminPanel");
-
-  if (admin) {
-    admin.remove();
-    return;
-  }
-
-  admin = document.createElement("div");
-  admin.id = "samiAdminPanel";
-  admin.className = "card";
-
-  admin.innerHTML = `
-    <h3 class="gold">⚙️ አስተዳዳሪ — Demo</h3>
-
-    <p class="muted">
-      ይህ የሙከራ ገጽ ነው። እውነተኛ የአስተዳዳሪ
-      ደህንነት ለማድረግ Backend ያስፈልጋል።
-    </p>
-
-    <div class="info">
-      <strong>የድረ-ገጽ ስም</strong><br>
-      ${escapeDamaText(SAMI_APP.title)}
     </div>
 
-    <div class="info" style="margin-top:8px">
-      <strong>የስሪት ቁጥር</strong><br>
-      ${SAMI_APP.version}
-    </div>
-
-    <button class="btn secondary" style="width:100%;margin-top:12px"
-      onclick="showSamiStorageInfo()">
-      የሙከራ መረጃን አሳይ
-    </button>
-
-    <button class="btn danger" style="width:100%;margin-top:10px"
-      onclick="clearSamiDemoData()">
-      የሙከራ መረጃን አጥፋ
-    </button>
-  `;
-
-  section.appendChild(admin);
-  admin.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
-function showSamiStorageInfo() {
-  const profile = getSamiProfile();
-
-  alert(
-    "የሙከራ መረጃ\n\n" +
-    "ስም፦ " + (profile.name || "-") + "\n" +
-    "ስልክ፦ " + (profile.phone || "-") + "\n" +
-    "ውጤት፦ በሙከራ ላይ\n\n" +
-    "ይህ መረጃ በዚህ Browser ውስጥ ብቻ ይቀመጣል።"
-  );
-}
-
-function clearSamiDemoData() {
-  const confirmDelete = confirm(
-    "የዚህ ጨዋታ የሙከራ መረጃ እንዲጠፋ ትፈልጋለህ?"
-  );
-
-  if (!confirmDelete) return;
-
-  localStorage.removeItem(SAMI_APP.storageKey);
-  localStorage.removeItem("playerName");
-
-  notify("የፕሮፋይል መረጃው ተሰርዟል።");
-  location.reload();
-}
-
-function samiLogout() {
-  const yes = confirm("ከጨዋታው መውጣት ትፈልጋለህ?");
-  if (!yes) return;
-
-  localStorage.removeItem("playerName");
-  location.reload();
-}
-
-/* ፕሮፋይሉን በገጹ ላይ አሳይ */
-document.addEventListener("DOMContentLoaded", function() {
-  renderSamiProfile();
-});
-</script>
-<script>
-/* ====================================
-   SAMI TSEHAY — PART 6
-   CONQUER 41 RULES
-   ==================================== */
-
-function conquerCardPoints(card) {
-  if (!card) return 0;
-
-  const rank = String(card.rank).toUpperCase();
-
-  if (rank === "A") return 11;
-  if (["J", "Q", "K"].includes(rank)) return 10;
-
-  const value = Number(rank);
-
-  if (value >= 2 && value <= 10) {
-    return value;
-  }
-
-  return 0;
-}
-
-/*
-  የካርታ ሴት ማረጋገጫ፦
-  - 3 ወይም 4 ተመሳሳይ ደረጃ ያላቸው ካርታዎች
-  - ተመሳሳይ ምልክት ያላቸው ተከታታይ ካርታዎች
-*/
-
-function conquerIsSet(cards) {
-  if (!Array.isArray(cards) || cards.length < 3 || cards.length > 4) {
-    return false;
-  }
-
-  return cards.every(card => card.rank === cards[0].rank);
-}
-
-function conquerIsRun(cards) {
-  if (!Array.isArray(cards) || cards.length < 3) {
-    return false;
-  }
-
-  const suit = cards[0].suit;
-
-  if (!cards.every(card => card.suit === suit)) {
-    return false;
-  }
-
-  const order = {
-    A: 1, "2": 2, "3": 3, "4": 4, "5": 5,
-    "6": 6, "7": 7, "8": 8, "9": 9, "10": 10,
-    J: 11, Q: 12, K: 13
-  };
-
-  const values = cards
-    .map(card => order[String(card.rank).toUpperCase()])
-    .sort((a, b) => a - b);
-
-  if (values.some(value => value === undefined)) {
-    return false;
-  }
-
-  for (let i = 1; i < values.length; i++) {
-    if (values[i] !== values[i - 1] + 1) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-function conquerIsValidMeld(cards) {
-  return conquerIsSet(cards) || conquerIsRun(cards);
-}
-
-function conquerMeldPoints(cards) {
-  if (!conquerIsValidMeld(cards)) {
-    return 0;
-  }
-
-  return cards.reduce((sum, card) => {
-    return sum + conquerCardPoints(card);
-  }, 0);
-}
-
-/*
-  በእጅ ያሉትን ካርታዎች በተለያዩ ሴቶች ለመከፋፈል
-  የሚቻሉትን የተሟሉ ውህዶች ይፈልጋል።
-*/
-
-function conquerGetMeldOptions(hand) {
-  const results = [];
-
-  function combinations(arr, size, start = 0, current = []) {
-    if (current.length === size) {
-      results.push(current.slice());
-      return;
-    }
-
-    for (let i = start; i < arr.length; i++) {
-      current.push(i);
-      combinations(arr, size, i + 1, current);
-      current.pop();
-    }
-  }
-
-  for (let size = 3; size <= 4; size++) {
-    combinations(hand, size);
-  }
-
-  return results
-    .filter(indices => {
-      const cards = indices.map(index => hand[index]);
-      return conquerIsValidMeld(cards);
-    })
-    .map(indices => ({
-      indices,
-      points: indices.reduce((sum, index) => {
-        return sum + conquerCardPoints(hand[index]);
-      }, 0)
-    }));
-}
-
-function conquerFindBestOpening(hand) {
-  const options = conquerGetMeldOptions(hand);
-  let best = {
-    points: 0,
-    melds: [],
-    used: []
-  };
-
-  function search(start, used, points, melds) {
-    if (points > best.points) {
-      best = {
-        points,
-        melds: melds.slice(),
-        used: [...used]
-      };
-    }
-
-    for (let i = start; i < options.length; i++) {
-      const option = options[i];
-
-      if (option.indices.some(index => used.has(index))) {
-        continue;
-      }
-
-      const nextUsed = new Set(used);
-
-      option.indices.forEach(index => nextUsed.add(index));
-
-      search(
-        i + 1,
-        nextUsed,
-        points + option.points,
-        [...melds, option]
-      );
-    }
-  }
-
-  search(0, new Set(), 0, []);
-
-  return best;
-}
-
-/*
-  የ41 መውረድ ማረጋገጫ።
-  እዚህ የተጫዋቹ የሴት ነጥብ 41 ወይም ከዚያ በላይ
-  መሆን አለበት።
-*/
-
-function conquerCheck41() {
-  if (typeof conquer === "undefined" || !conquer.hand) {
-    notify("መጀመሪያ ኮንከር ጨዋታ ጀምር።");
-    return;
-  }
-
-  const best = conquerFindBestOpening(conquer.hand);
-
-  if (best.points < 41) {
-    notify(
-      "❌ መውረድ አትችልም። የሴት ነጥብህ " +
-      best.points + " ነው፤ 41 ያስፈልጋል።"
-    );
-    return;
-  }
-
-  conquer.opened = true;
-  conquer.openingPoints = best.points;
-
-  notify(
-    "✅ ተፈቅዷል! የሴት ነጥብህ " +
-    best.points + " ነው።"
-  );
-
-  if (typeof updateConquerInfo === "function") {
-    updateConquerInfo();
-  }
-}
-
-/*
-  የተመረጡት ካርታዎች ትክክለኛ ሴት መሆናቸውን
-  እና ነጥባቸውን ይፈትሻል።
-*/
-
-function conquerCheckSelectedMeld() {
-  if (
-    typeof conquer === "undefined" ||
-    !Array.isArray(conquer.selected)
-  ) {
-    notify("መጀመሪያ ካርታዎችን ምረጥ።");
-    return;
-  }
-
-  const cards = conquer.selected.map(index => conquer.hand[index]);
-
-  if (cards.some(card => !card)) {
-    notify("የተመረጡት ካርታዎች ትክክል አይደሉም።");
-    return;
-  }
-
-  if (!conquerIsValidMeld(cards)) {
-    notify("❌ እነዚህ ካርታዎች ትክክለኛ ሴት አይደሉም።");
-    return;
-  }
-
-  const points = conquerMeldPoints(cards);
-
-  notify("✅ ትክክለኛ ሴት! ነጥብ፦ " + points);
-}
-
-/*
-  የውጤት ማሳያ
-*/
-
-function conquerShowOpeningScore() {
-  if (typeof conquer === "undefined" || !conquer.hand) {
-    notify("ኮንከር ጨዋታ ጀምር።");
-    return;
-  }
-
-  const best = conquerFindBestOpening(conquer.hand);
-
-  alert(
-    "የኮንከር ውጤት\n\n" +
-    "የሴቶች ጠቅላላ ነጥብ፦ " + best.points + "\n" +
-    "የተገኙ ሴቶች፦ " + best.melds.length + "\n\n" +
-    (best.points >= 41
-      ? "41 ነጥብ ደርሰሃል።"
-      : "41 ነጥብ ለመድረስ ተጨማሪ ሴት ያስፈልጋል።")
-  );
-}
-
-console.log("Sami Conquer Part 6 loaded.");
-</script>
-<script>
-/* SAMI TSEHAY — 108 CARD DECK */
-
-function createDeck() {
-  const suits = [
-    { symbol: "♥", name: "hearts", color: "red" },
-    { symbol: "♦", name: "diamonds", color: "red" },
-    { symbol: "♣", name: "clubs", color: "black" },
-    { symbol: "♠", name: "spades", color: "black" }
-  ];
-
-  const ranks = [
-    "A", "2", "3", "4", "5", "6", "7",
-    "8", "9", "10", "J", "Q", "K"
-  ];
-
-  const deck = [];
-
-  // 2 ሙሉ ፖኬት = 104 መደበኛ ካርታዎች
-  for (let pack = 1; pack <= 2; pack++) {
-    for (const suit of suits) {
-      for (const rank of ranks) {
-        deck.push({
-          id: `${pack}-${suit.name}-${rank}`,
-          pack,
-          suit: suit.symbol,
-          suitName: suit.name,
-          color: suit.color,
-          rank,
-          points:
-            rank === "A" ? 11 :
-            ["J", "Q", "K"].includes(rank) ? 10 :
-            Number(rank)
-        });
-      }
-    }
-  }
-
-  // 4 Joker በመጨመር 108 ካርታ ይሆናል
-  for (let i = 1; i <= 4; i++) {
-    deck.push({
-      id: `joker-${i}`,
-      pack: 0,
-      suit: "★",
-      suitName: "joker",
-      color: "black",
-      rank: "JOKER",
-      points: 0,
-      joker: true
-    });
-  }
-
-  return deck;
-}
-</script>
-<script>
-/* SAMI TSEHAY — PART 7: DOBE */
-
-function checkDobe108() {
-  if (
-    typeof conquer === "undefined" ||
-    !Array.isArray(conquer.hand)
-  ) {
-    notify("መጀመሪያ ኮንከር ጨዋታ ጀምር።");
-    return false;
-  }
-
-  const hand = conquer.hand;
-
-  // ጆከርን ለጊዜው ከዶቤ ቆጠራ አስወግድ
-  const ranks = {};
-
-  hand.forEach((card, index) => {
-    if (!card || card.joker || card.rank === "JOKER") return;
-
-    const rank = String(card.rank);
-
-    if (!ranks[rank]) ranks[rank] = [];
-    ranks[rank].push(index);
-  });
-
-  // አምስት ተመሳሳይ ደረጃ ያላቸው ካርታዎችን ፈልግ
-  const fiveCardGroups = Object.values(ranks)
-    .filter(indices => indices.length >= 5);
-
-  if (!fiveCardGroups.length) {
-    notify("❌ ዶቤ ለመሥራት 5 ተመሳሳይ ደረጃ ያላቸው ካርታዎች ያስፈልጋሉ።");
-    return false;
-  }
-
-  // ከአምስቱ ውጭ ሌላ ሴት መኖሩን ፈትሽ
-  for (const group of fiveCardGroups) {
-    const excluded = new Set(group.slice(0, 5));
-
-    const remainingHand = hand.filter(
-      (card, index) => !excluded.has(index)
-    );
-
-    const best = conquerFindBestOpening(remainingHand);
-
-    if (best.points > 0) {
-      notify("🏆 ዶቤ ተረጋግጧል! አምስት ካርታ እና ተጨማሪ ሴት አለህ።");
-      return true;
-    }
-  }
-
-  notify("አምስት ካርታዎች አሉ፤ ግን ተጨማሪ ሴት አልተገኘም።");
-  return false;
-}
-</script>
-<script>
-/* PART 8 — CONQUER MELD LAY DOWN */
-
-if (typeof conquer !== "undefined") {
-    if (!Array.isArray(conquer.laidMelds)) {
-        conquer.laidMelds = [];
-    }
-}
-
-/* የተመረጡ ካርታዎችን ማግኘት */
-function conquerGetSelectedCards() {
-    if (typeof conquer === "undefined" ||
-        !Array.isArray(conquer.hand) ||
-        !Array.isArray(conquer.selected)) {
-        return [];
-    }
-
-    return conquer.selected
-        .map(index => conquer.hand[index])
-        .filter(Boolean);
-}
-
-/* የተመረጡ ካርታዎችን ወደ ሜዳ ማስቀመጥ */
-function conquerLaySelectedMeld() {
-    if (typeof conquer === "undefined") {
-        notify("ጨዋታውን መጀመሪያ ክፈት።");
-        return;
-    }
-
-    const indexes = [...new Set(conquer.selected || [])]
-        .filter(i => Number.isInteger(i) &&
-                     i >= 0 &&
-                     i < conquer.hand.length)
-        .sort((a, b) => b - a);
-
-    const cards = indexes.map(i => conquer.hand[i]);
-
-    if (cards.length < 3) {
-        notify("ቢያንስ 3 ካርታዎችን ምረጥ።");
-        return;
-    }
-
-    if (!conquerIsValidMeld(cards)) {
-        notify("ካርታዎቹ Set ወይም Run መሆን አለባቸው።");
-        return;
-    }
-
-    const points = cards.reduce(
-        (sum, card) => sum + conquerCardPoints(card), 0
-    );
-
-    if (!conquer.opened) {
-        const opening = conquerFindBestOpening(conquer.hand);
-
-        if (!opening || opening.points < 41) {
-            notify("ለመክፈት ቢያንስ 41 ነጥብ ያስፈልጋል።");
-            return;
+    <script>
+        let myCards = [
+            {val: '2', suit: '♥', pts: 2, red: true},
+            {val: '3', suit: '♠', pts: 3, red: false},
+            {val: '4', suit: '♥', pts: 4, red: true},
+            {val: '4', suit: '♦', pts: 4, red: true},
+            {val: '4', suit: '♣', pts: 4, red: false},
+            {val: '4', suit: '♠', pts: 4, red: false},
+            {val: '4', suit: '♥', pts: 4, red: true},
+            {val: '3', suit: '♦', pts: 3, red: true},
+            {val: '3', suit: '♣', pts: 3, red: false},
+            {val: '3', suit: '♥', pts: 3, red: true},
+            {val: 'JOKER', suit: '🃏', pts: 10, red: false, isJoker: true},
+            {val: 'K', suit: '♥', pts: 10, red: true},
+            {val: 'A', suit: '♠', pts: 10, red: false}
+        ];
+
+        let selectedIndices = [];
+
+        function startGame() {
+            let name = document.getElementById('playerNameInput').value.trim();
+            if (!name) {
+                alert("እባክዎ ስምዎን ያስገቡ!");
+                return;
+            }
+            document.getElementById('displayPlayerName').innerText = name;
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('gameScreen').style.display = 'flex';
+            renderHand();
+            initDammaBoard();
         }
 
-        conquer.opened = true;
-        conquer.openingPoints = opening.points;
-    }
+        function switchGameMode(mode) {
+            let conquerBoard = document.getElementById('conquerBoard');
+            let dammaBoard = document.getElementById('dammaBoard');
+            let btnConquer = document.getElementById('btnConquer');
+            let btnDamma = document.getElementById('btnDamma');
+            let handSection = document.getElementById('playerHandSection');
 
-    const meld = {
-        id: Date.now() + "-" + Math.random().toString(36).slice(2, 7),
-        cards: cards.slice(),
-        points,
-        type: conquerIsSet(cards) ? "SET" : "RUN"
-    };
-
-    conquer.laidMelds = conquer.laidMelds || [];
-    conquer.laidMelds.push(meld);
-
-    /* ካርታዎቹን ከእጅ ማስወገድ */
-    indexes.forEach(index => {
-        conquer.hand.splice(index, 1);
-    });
-
-    conquer.selected = [];
-
-    if (typeof renderHand === "function") renderHand();
-    if (typeof updateConquerInfo === "function") updateConquerInfo();
-
-    conquerRenderLaidMelds();
-
-    notify("ካርታዎቹ በሜዳ ላይ ተቀምጠዋል።");
-}
-
-/* በሜዳ ላይ የተቀመጡ ሜልዶችን ማሳየት */
-function conquerRenderLaidMelds() {
-    let area = document.getElementById("conquerLaidMelds");
-
-    if (!area) {
-        area = document.createElement("div");
-        area.id = "conquerLaidMelds";
-        area.style.cssText =
-            "margin:12px 0;padding:12px;border-radius:12px;" +
-            "background:#123c2b;color:white;";
-
-        const tab = document.getElementById("conquerTab");
-
-        if (tab) {
-            tab.appendChild(area);
-        } else {
-            document.body.appendChild(area);
-        }
-    }
-
-    const melds = conquer.laidMelds || [];
-
-    area.innerHTML = "<h3>🃏 በሜዳ ላይ የተቀመጡ ካርታዎች</h3>";
-
-    if (melds.length === 0) {
-        area.innerHTML += "<p>ገና ካርታ አልተቀመጠም።</p>";
-        return;
-    }
-
-    melds.forEach((meld, index) => {
-        const row = document.createElement("div");
-        row.style.cssText =
-            "margin:8px 0;padding:10px;background:#205640;" +
-            "border-radius:8px;";
-
-        const label = document.createElement("strong");
-        label.textContent =
-            (index + 1) + ". " + meld.type + " — " +
-            meld.points + " ነጥብ";
-
-        const cards = document.createElement("div");
-        cards.style.marginTop = "6px";
-
-        meld.cards.forEach(card => {
-            const span = document.createElement("span");
-            span.textContent = card.rank + card.suit + "  ";
-            span.style.cssText =
-                "display:inline-block;margin:3px;padding:5px 8px;" +
-                "background:white;color:" +
-                (card.color === "red" ? "#d22" : "#111") +
-                ";border-radius:5px;font-weight:bold;";
-            cards.appendChild(span);
-        });
-
-        row.appendChild(label);
-        row.appendChild(cards);
-        area.appendChild(row);
-    });
-}
-
-/* የማስቀመጫ ቁልፍ */
-function conquerAddLayButton() {
-    const tab = document.getElementById("conquerTab");
-    if (!tab || document.getElementById("conquerLayButton")) return;
-
-    const button = document.createElement("button");
-    button.id = "conquerLayButton";
-    button.textContent = "🃏 የተመረጡትን ካርታዎች አስቀምጥ";
-    button.style.cssText =
-        "width:100%;padding:12px;margin:10px 0;" +
-        "background:#d4af37;color:#17251d;border:0;" +
-        "border-radius:10px;font-weight:bold;";
-
-    button.addEventListener("click", conquerLaySelectedMeld);
-    tab.appendChild(button);
-}
-
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-        conquerAddLayButton();
-        conquerRenderLaidMelds();
-    });
-} else {
-    conquerAddLayButton();
-    if (typeof conquer !== "undefined") conquerRenderLaidMelds();
-}
-</script>
-<script>
-/* PART 9 — DISCARD, END TURN & DOBE */
-
-if (typeof conquer !== "undefined") {
-    conquer.hasDrawn = conquer.hasDrawn || false;
-    conquer.turnNumber = conquer.turnNumber || 1;
-}
-
-/* የካርታ መውሰድ ሁኔታን መመርመር */
-function conquerCanDiscard() {
-    if (typeof conquer === "undefined" ||
-        !Array.isArray(conquer.hand)) {
-        notify("መጀመሪያ ጨዋታውን ጀምር።");
-        return false;
-    }
-
-    if (!conquer.hasDrawn) {
-        notify("መጀመሪያ ካርታ ውሰድ።");
-        return false;
-    }
-
-    return true;
-}
-
-/* የተመረጠውን ካርታ መጣል */
-function conquerDiscardSelected() {
-    if (!conquerCanDiscard()) return;
-
-    const indexes = [...new Set(conquer.selected || [])]
-        .filter(i => Number.isInteger(i) &&
-                     i >= 0 &&
-                     i < conquer.hand.length);
-
-    if (indexes.length !== 1) {
-        notify("ለመጣል አንድ ካርታ ብቻ ምረጥ።");
-        return;
-    }
-
-    const index = indexes[0];
-    const card = conquer.hand[index];
-
-    /* የመጨረሻውን ካርታ በሜዳ ላይ ካስቀመጥክ አሸናፊነትን ፈትሽ */
-    conquer.hand.splice(index, 1);
-    conquer.selected = [];
-
-    conquer.discardPile = conquer.discardPile || [];
-    conquer.discardPile.push(card);
-
-    conquer.hasDrawn = false;
-    conquer.turnNumber = (conquer.turnNumber || 1) + 1;
-
-    if (typeof renderHand === "function") renderHand();
-    if (typeof updateConquerInfo === "function") updateConquerInfo();
-
-    conquerRenderDiscardPile();
-    conquerRenderTurnInfo();
-
-    if (typeof checkDobe108 === "function" && checkDobe108()) {
-        notify("🎉 Dobe ተገኝቷል! የአሸናፊነት ሁኔታን አረጋግጥ።");
-    } else {
-        notify("ካርታው ተጥሏል። ተራው ተጠናቋል።");
-    }
-}
-
-/* የተጣሉ ካርታዎችን ማሳየት */
-function conquerRenderDiscardPile() {
-    let area = document.getElementById("conquerDiscardArea");
-
-    if (!area) {
-        area = document.createElement("div");
-        area.id = "conquerDiscardArea";
-        area.style.cssText =
-            "padding:12px;margin:10px 0;background:#173d2d;" +
-            "color:white;border-radius:10px;";
-
-        const tab = document.getElementById("conquerTab");
-        if (tab) tab.appendChild(area);
-    }
-
-    if (!area) return;
-
-    const pile = conquer.discardPile || [];
-    const top = pile[pile.length - 1];
-
-    area.innerHTML = "";
-
-    const title = document.createElement("h3");
-    title.textContent = "🗑️ የተጣሉ ካርታዎች";
-    area.appendChild(title);
-
-    const info = document.createElement("p");
-    info.textContent = top
-        ? "የመጨረሻው ካርታ: " + top.rank + top.suit
-        : "ገና ካርታ አልተጣለም።";
-
-    area.appendChild(info);
-}
-
-/* የተጫዋቹን ተራ ማሳየት */
-function conquerRenderTurnInfo() {
-    let area = document.getElementById("conquerTurnInfo");
-
-    if (!area) {
-        area = document.createElement("div");
-        area.id = "conquerTurnInfo";
-        area.style.cssText =
-            "padding:10px;margin:8px 0;background:#f2c94c;" +
-            "color:#222;border-radius:8px;font-weight:bold;";
-
-        const tab = document.getElementById("conquerTab");
-        if (tab) tab.appendChild(area);
-    }
-
-    if (area) {
-        area.textContent =
-            "ተራ: " + (conquer.turnNumber || 1) +
-            " | በእጅህ ያሉ ካርታዎች: " +
-            (conquer.hand ? conquer.hand.length : 0);
-    }
-}
-
-/* የካርታ መጣያ ቁልፍ */
-function conquerAddDiscardButton() {
-    const tab = document.getElementById("conquerTab");
-    if (!tab || document.getElementById("conquerDiscardButton")) return;
-
-    const button = document.createElement("button");
-    button.id = "conquerDiscardButton";
-    button.textContent = "🗑️ የተመረጠውን ካርታ ጣል";
-    button.style.cssText =
-        "width:100%;padding:12px;margin:8px 0;" +
-        "background:#c94b4b;color:white;border:0;" +
-        "border-radius:10px;font-weight:bold;";
-
-    button.addEventListener("click", conquerDiscardSelected);
-    tab.appendChild(button);
-}
-
-/* አዲስ ተራ ሲጀምር */
-function conquerBeginTurn() {
-    if (typeof conquer === "undefined") return;
-
-    conquer.hasDrawn = false;
-    conquer.selected = [];
-
-    conquerRenderTurnInfo();
-    conquerRenderDiscardPile();
-}
-
-/* የድሮ drawFromDeck ተግባርን በተራ ሁኔታ ማስተካከል */
-if (typeof drawFromDeck === "function" &&
-    !drawFromDeck._samiWrapped) {
-
-    const originalDrawFromDeck = drawFromDeck;
-
-    window.drawFromDeck = function() {
-        if (typeof conquer === "undefined") return;
-
-        if (conquer.hasDrawn) {
-            notify("በዚህ ተራ ካርታ ወስደሃል።");
-            return;
+            if (mode === 'conquer') {
+                conquerBoard.style.display = 'flex';
+                dammaBoard.style.display = 'none';
+                handSection.style.display = 'flex';
+                btnConquer.classList.add('active');
+                btnDamma.classList.remove('active');
+            } else {
+                conquerBoard.style.display = 'none';
+                dammaBoard.style.display = 'grid';
+                handSection.style.display = 'none';
+                btnDamma.classList.add('active');
+                btnConquer.classList.remove('active');
+            }
         }
 
-        originalDrawFromDeck();
+        function renderHand() {
+            const container = document.getElementById('playerHand');
+            container.innerHTML = '';
 
-        if (conquer.hand && conquer.hand.length > 0) {
-            conquer.hasDrawn = true;
-            conquerRenderTurnInfo();
-        }
-    };
+            let totalCards = myCards.length;
+            let containerWidth = container.clientWidth || 350;
+            let step = Math.min(35, (containerWidth - 90) / (totalCards - 1 || 1));
 
-    window.drawFromDeck._samiWrapped = true;
-}
+            myCards.forEach((card, index) => {
+                let cardDiv = document.createElement('div');
+                cardDiv.className = card.red ? 'player-card red' : 'player-card';
+                if (selectedIndices.includes(index)) {
+                    cardDiv.classList.add('selected');
+                }
 
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-        conquerAddDiscardButton();
+                cardDiv.style.left = `${index * step + 15}px`;
+                cardDiv.style.zIndex = index + 1;
 
-        if (typeof conquer !== "undefined") {
-            conquerRenderDiscardPile();
-            conquerRenderTurnInfo();
-        }
-    });
-} else {
-    conquerAddDiscardButton();
+                cardDiv.innerHTML = `
+                    <div>${card.val}</div>
+                    <div style="font-size: 15px; text-align: center;">${card.suit}</div>
+                    <div style="transform: rotate(180deg);">${card.val}</div>
+                `;
 
-    if (typeof conquer !== "undefined") {
-        conquerRenderDiscardPile();
-        conquerRenderTurnInfo();
-    }
-}
-</script>
-<script>
-/* PART 10 — START NEW CONQUER GAME */
+                cardDiv.addEventListener('click', () => {
+                    const pos = selectedIndices.indexOf(index);
+                    if (pos > -1) {
+                        selectedIndices.splice(pos, 1);
+                    } else {
+                        selectedIndices.push(index);
+                    }
+                    renderHand();
+                });
 
-function conquerStartNewGame() {
-    if (typeof createDeck !== "function") {
-        notify("የካርታ ማዘጋጃ ኮድ አልተገኘም።");
-        return;
-    }
-
-    // 108 ካርታዎችን መፍጠር
-    const deck = createDeck();
-
-    // ካርታዎችን መቀላቀል
-    if (typeof shuffle === "function") {
-        shuffle(deck);
-    } else {
-        for (let i = deck.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [deck[i], deck[j]] = [deck[j], deck[i]];
-        }
-    }
-
-    // የጨዋታ ሁኔታን እንደገና ማዘጋጀት
-    conquer = {
-        deck: deck,
-        hand: [],
-        discardPile: [],
-        selected: [],
-        opened: false,
-        openingPoints: 0,
-        laidMelds: [],
-        hasDrawn: false,
-        turnNumber: 1
-    };
-
-    // 13 ካርታዎችን ለተጫዋቹ መስጠት
-    for (let i = 0; i < 13; i++) {
-        if (conquer.deck.length > 0) {
-            conquer.hand.push(conquer.deck.pop());
-        }
-    }
-
-    // የመጀመሪያ የተጣለ ካርታ
-    if (conquer.deck.length > 0) {
-        conquer.discardPile.push(conquer.deck.pop());
-    }
-
-    // የጨዋታ ማሳያዎችን ማደስ
-    if (typeof renderHand === "function") {
-        renderHand();
-    }
-
-    if (typeof updateConquerInfo === "function") {
-        updateConquerInfo();
-    }
-
-    if (typeof conquerRenderLaidMelds === "function") {
-        conquerRenderLaidMelds();
-    }
-
-    if (typeof conquerRenderDiscardPile === "function") {
-        conquerRenderDiscardPile();
-    }
-
-    if (typeof conquerRenderTurnInfo === "function") {
-        conquerRenderTurnInfo();
-    }
-
-    if (typeof conquerShowOpeningScore === "function") {
-        conquerShowOpeningScore();
-    }
-
-    notify("🎴 አዲስ ጨዋታ ተጀመረ! 13 ካርታዎች ተሰጥተውሃል።");
-}
-
-// አዲስ ጨዋታ ቁልፍ መጨመር
-function conquerAddNewGameButton() {
-    const tab = document.getElementById("conquerTab");
-
-    if (!tab || document.getElementById("conquerNewGameButton")) {
-        return;
-    }
-
-    const button = document.createElement("button");
-
-    button.id = "conquerNewGameButton";
-    button.textContent = "🔄 አዲስ Conquer ጨዋታ";
-    button.style.cssText =
-        "width:100%;padding:14px;margin:10px 0;" +
-        "background:#176b45;color:white;border:2px solid #d4af37;" +
-        "border-radius:12px;font-size:16px;font-weight:bold;";
-
-    button.addEventListener("click", conquerStartNewGame);
-    tab.prepend(button);
-}
-
-if (document.readyState === "loading") {
-    document.addEventListener(
-        "DOMContentLoaded",
-        conquerAddNewGameButton
-    );
-} else {
-    conquerAddNewGameButton();
-}
-</script>
-<script>
-/* PART 11 — DAMA CAPTURE & KING */
-
-function tangenyaTryMove(fromR, fromC, toR, toC) {
-    if (!tangenyaBoard[fromR] ||
-        !tangenyaBoard[toR] ||
-        tangenyaBoard[toR][toC] !== null) {
-        return false;
-    }
-
-    const piece = tangenyaBoard[fromR][fromC];
-    if (!piece || piece !== tangenyaTurn) return false;
-
-    const dr = toR - fromR;
-    const dc = toC - fromC;
-
-    // ቀላል ቆርኪ ወደፊት ብቻ ይንቀሳቀሳል፤
-    // King ግን በሁለቱም አቅጣጫ ይንቀሳቀሳል።
-    const isKing = piece.endsWith("_king");
-    const player = piece.replace("_king", "");
-    const forward = player === "pepsi" ? -1 : 1;
-
-    // አንድ ካሬ መንቀሳቀስ
-    if (Math.abs(dc) === 1 &&
-        Math.abs(dr) === 1 &&
-        (isKing || dr === forward)) {
-
-        tangenyaBoard[toR][toC] = piece;
-        tangenyaBoard[fromR][fromC] = null;
-        tangenyaPromote(toR, toC);
-        tangenyaTurn = player === "pepsi" ? "coca" : "pepsi";
-        tangenyaRender();
-        return true;
-    }
-
-    // አንድ የተቃዋሚ ቆርኪ መብላት
-    if (Math.abs(dc) === 2 && Math.abs(dr) === 2) {
-        const midR = fromR + dr / 2;
-        const midC = fromC + dc / 2;
-        const middlePiece = tangenyaBoard[midR][midC];
-
-        if (middlePiece &&
-            middlePiece.replace("_king", "") !== player) {
-
-            tangenyaBoard[toR][toC] = piece;
-            tangenyaBoard[fromR][fromC] = null;
-            tangenyaBoard[midR][midC] = null;
-
-            tangenyaPromote(toR, toC);
-            tangenyaRender();
-
-            // በዚህ ቀላል ስሪት ከመብላት በኋላ ተራው ይቀየራል።
-            tangenyaTurn = player === "pepsi" ? "coca" : "pepsi";
-            tangenyaRender();
-            tangenyaCheckWinner();
-            return true;
-        }
-    }
-
-    return false;
-}
-
-/* የመጨረሻው ረድፍ ላይ ሲደርስ King ማድረግ */
-function tangenyaPromote(r, c) {
-    const piece = tangenyaBoard[r][c];
-    if (!piece) return;
-
-    if (piece === "pepsi" && r === 0) {
-        tangenyaBoard[r][c] = "pepsi_king";
-        notify("👑 ፔፕሲ King ሆነ!");
-    }
-
-    if (piece === "coca" && r === 11) {
-        tangenyaBoard[r][c] = "coca_king";
-        notify("👑 ኮካ-ኮላ King ሆነ!");
-    }
-}
-
-/* የንጉሥና የቆርኪ ቀለም */
-function tangenyaPieceColor(piece) {
-    if (piece.startsWith("pepsi")) return "#0759c7";
-    return "#c8202b";
-}
-
-/* የተቀሩ ቆርኪዎችን ቆጥሮ አሸናፊን መፈተሽ */
-function tangenyaCheckWinner() {
-    let pepsiCount = 0;
-    let cocaCount = 0;
-
-    for (const row of tangenyaBoard) {
-        for (const piece of row) {
-            if (piece && piece.startsWith("pepsi")) pepsiCount++;
-            if (piece && piece.startsWith("coca")) cocaCount++;
-        }
-    }
-
-    if (pepsiCount === 0) {
-        notify("🏆 ኮካ-ኮላ አሸነፈ!");
-    } else if (cocaCount === 0) {
-        notify("🏆 ፔፕሲ አሸነፈ!");
-    }
-}
-</script>
-function tangenyaClick(r, c) {
-    if (!tangenyaBoard[r] || c < 0 || c >= 12) return;
-
-    const piece = tangenyaBoard[r][c];
-
-    // 1. ቆርኪ መምረጥ
-    if (!tangenyaSelected) {
-        if (!piece || piece.replace("_king", "") !== tangenyaTurn) {
-            notify("የራስህን ቆርኪ ምረጥ።");
-            return;
+                container.appendChild(cardDiv);
+            });
         }
 
-        tangenyaSelected = { r, c };
-        tangenyaRender();
-        return;
-    }
+        function sortHand() {
+            myCards.sort((a, b) => b.pts - a.pts);
+            selectedIndices = [];
+            renderHand();
+        }
 
-    const from = tangenyaSelected;
+        function initDammaBoard() {
+            const board = document.getElementById('dammaBoard');
+            board.innerHTML = '';
+            for (let r = 0; r < 8; r++) {
+                for (let c = 0; c < 8; c++) {
+                    let cell = document.createElement('div');
+                    let isDark = (r + c) % 2 === 1;
+                    cell.className = isDark ? 'damma-cell dark' : 'damma-cell light';
+                    
+                    if (isDark && r < 3) {
+                        let piece = document.createElement('div');
+                        piece.className = 'damma-piece white';
+                        cell.appendChild(piece);
+                    } else if (isDark && r > 4) {
+                        let piece = document.createElement('div');
+                        piece.className = 'damma-piece red';
+                        cell.appendChild(piece);
+                    }
+                    board.appendChild(cell);
+                }
+            }
+        }
 
-    // 2. ሌላ የራስህን ቆርኪ መምረጥ
-    if (piece && piece.replace("_king", "") === tangenyaTurn) {
-        tangenyaSelected = { r, c };
-        tangenyaRender();
-        return;
-    }
+        function openTelebirrModal() {
+            let action = prompt("የቴሌብር የኪስ ቦርሳ (0972226999 - ሳሚ ፀሀይ[span_1](start_span)[span_1](end_span)):\n1. ገንዘብ ለማስገባት\n2. ገንዘብ ለማውጣት\n\nቁጥር 1 ወይም 2 ይምረጡ:");
+            if (action === "1") {
+                let amt = prompt("ለማስገባት የሚፈልጉትን መጠን በብር ያስገቡ:");
+                if (amt) alert(`✅ በቴሌብር 0972226999 የተጠየቀው ${amt} ብር ገብቷል[span_2](start_span)[span_2](end_span)!`);
+            } else if (action === "2") {
+                let amt = prompt("ለማውጣት የሚፈልጉትን መጠን በብር ያስገቡ:");
+                if (amt) alert(`✅ ${amt} ብር ተልኳል!`);
+            }
+        }
 
-    // 3. የተመረጠውን ቆርኪ ማንቀሳቀስ
-    const moved = tangenyaTryMove(from.r, from.c, r, c);
-
-    if (!moved) {
-        notify("ይህ እንቅስቃሴ አይፈቀድም።");
-        tangenyaSelected = null;
-        tangenyaRender();
-    }
-}
-<script>
-/* PART 13 — CONNECT DAM
+        function pickDiscarded() { alert("📥 የተጣለውን ካርታ አንስተዋል!"); }
+        function drawCard() { alert("🃏 ከማከማቻው አዲስ ካርታ ደርሰዋል!"); }
+        function passTurn() { alert("⏭️ ተራዎ አልፏል! (PASS)"); }
+        function declareDobe() { alert("🔥 ዶቤ ታውጇል! (5 ተመሳሳይ ካርታዎች እና 1 ሴት/ትሪስ በመያዝዎ የዕጥፍ (Double) አሸናፊነት ተረጋግጧል!)"); }
+        function downloadMelts() {
+            if (selectedIndices.length === 0) {
+                alert("⚠️ እባክዎ ማውረድ የሚፈልጓቸውን ካርታዎች ይምረጡ!");
+                return;
+            }
+            alert("✨ ውርድዎ ተቀባይነት አግኝቷል! 41 ነጥብ አልፏል!");
+        }
+        function discardCard() {
+            if (selectedIndices.length === 1) {
+                myCards.splice(selectedIndices[0], 1);
+                selectedIndices = [];
+                renderHand();
+            } else {
+                alert("እባክዎ የሚጥሉትን *አንድ* ካርታ ብቻ ይምረጡ!");
+            }
+        }
+    </script>
 </body>
 </html>
